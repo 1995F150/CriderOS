@@ -1,0 +1,27 @@
+# CriderOS
+
+CriderOS is a custom AI assistant and modding interface designed to assist with:
+- FS22/FS25 game modding
+- AI voice/text automation
+- Map layout planning with GPS accuracy
+- Mobile and web interface support
+
+## Features
+- 💬 AI Assistant for modding and real-life automation
+- 🌐 Web-based interface (HTML, CSS, JS)
+- 📱 Mobile-ready layout
+- 🧠 Supports OpenAI and ElevenLabs API integration
+- 🛠️ Built-in tools for Farming Simulator 22/25
+
+## How to Run
+1. Clone the repo  
+2. Open `index.html` in your browser  
+3. For backend support, connect to the Flask server in `main.py` (if used)  
+4. For deployment, push to GitHub Pages or Replit deployment
+
+## License
+MIT (Feel free to fork, improve, and build on it)
+
+---
+
+Built by Jessie Crider • [CriderOS AI v1.7]
