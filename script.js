@@ -11,3 +11,5 @@ function handleCredentialResponse(response) {
     document.getElementById("output").innerText = `Signed in as: ${data.email}`;
   });
 }
+console.log("CriderOS is live.");
+alert("CriderOS loaded.");
