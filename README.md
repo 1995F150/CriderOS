@@ -1,85 +1,75 @@
 # CriderOS
 
-CriderOS is an experimental open-source operating system project focused on AI infrastructure, self-hosting, homelab workloads, and practical tools for agriculture and creators.
+A custom Arch-based Linux distribution for the CriderGPT ecosystem.
+Built for daily driving on x86_64 desktops, with planned editions for Raspberry Pi and a browser-based shell.
 
-## Vision
+> **Status:** v0.1 "Seedling" — bootable live ISO with KDE Plasma + CriderOS branding.
 
-Build a lightweight but scalable operating system designed to support:
+---
 
-- Local AI models
-- Self-hosted services
-- Edge functions
-- Server and homelab deployments
-- Agricultural software tools
-- Media services like Jellyfin
-- Experimental developer tooling
+## Quick build (Docker, any host)
 
-## Goals
+You don't need Arch installed. The build runs inside an official Arch container.
 
-Current project goals include:
+```bash
+git clone https://github.com/<your-org>/crideros.git
+cd crideros
+./scripts/build-iso.sh
+```
 
-- Create a stable Linux-based foundation
-- Add tools for local AI inference
-- Support containerized services
-- Explore integrated database and function hosting
-- Develop modular packages for future expansion
-- Keep the project open source
+When it finishes you'll have:
 
-## Planned Features
+```
+out/crideros-0.1-x86_64.iso
+out/crideros-0.1-x86_64.iso.sha256
+```
 
-### Core System
-- Lightweight base system
-- Package management
-- Security updates
-- Server-focused tuning
+Flash it to a USB stick:
 
-### AI Stack
-- Local model support
-- Inference tools
-- GPU acceleration support
-- Optional local-first cloud fallback architecture
+```bash
+sudo dd if=out/crideros-0.1-x86_64.iso of=/dev/sdX bs=4M status=progress oflag=sync
+```
 
-### Self Hosting
-- Jellyfin support
-- Reverse proxy tools
-- Database support
-- Local function hosting
+…or boot it in QEMU to test:
 
-### Agriculture Tools (Future)
-- Smart livestock tools
-- Farm data utilities
-- Sensor and monitoring integrations
+```bash
+qemu-system-x86_64 -enable-kvm -m 4G -cdrom out/crideros-0.1-x86_64.iso
+```
+
+---
+
+## What's in v0.1
+
+- Arch base + `linux-zen` kernel (great for Ryzen + RX 580)
+- KDE Plasma 6 desktop (Wayland, X11 fallback)
+- AMD GPU firmware, NetworkManager, PipeWire, Bluetooth
+- Firefox, Konsole, Dolphin, Kate
+- CriderOS branding: GRUB splash, SDDM theme, wallpaper, Plasma color scheme
+- Live user `crider` (passwordless sudo) for testing
+- Calamares installer pre-wired for Phase 2
 
 ## Roadmap
 
-Phase 1
-- Repository setup
-- Documentation
-- Base architecture planning
+See [`CriderOS_Roadmap.pdf`](./docs/CriderOS_Roadmap.pdf).
 
-Phase 2
-- Prototype build
-- Package structure
-- Installer concepts
+| Version | Codename | Phase |
+| --- | --- | --- |
+| 0.1 | Seedling | Bootable live ISO (this release) |
+| 0.2 | Pasture | Calamares installer working |
+| 0.3 | Herd | CriderGPT app + Docker stack baked in |
+| 0.4 | Barn | NFC reader + label printer presets |
+| 1.0 | Homestead | Public launch, signed ISOs |
 
-Phase 3
-- Testing
-- Community feedback
-- Public alpha
+## Repo layout
 
-## Status
-
-Early concept / planning stage.
-
-## Contributing
-
-Contributions, ideas, and experimentation are welcome.
+```
+archiso/        # archiso profile (the actual ISO recipe)
+branding/       # logo, wallpaper, color schemes, SDDM theme
+scripts/        # build helpers
+.github/        # nightly build workflow
+docs/           # roadmap, install guide
+```
 
 ## License
 
-MIT License (or GPLv3 — choose one)
-
-## Author
-
-Created by Jessie Crider  
-Project: CriderOS
+GPLv3 for the distro recipe. Branding assets © Jessie Crider.
